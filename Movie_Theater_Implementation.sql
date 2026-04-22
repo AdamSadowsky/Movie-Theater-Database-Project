@@ -8,7 +8,8 @@ CREATE TABLE IF NOT EXISTS Customers (
 
 CREATE TABLE IF NOT EXISTS Auditoriums (
 	AuditoriumID int primary key,
-    Capacity int NOT NULL
+    Capacity int NOT NULL,
+    CHECK (Capacity > 0)
 );
 
 CREATE TABLE IF NOT EXISTS Movies (
@@ -20,7 +21,8 @@ CREATE TABLE IF NOT EXISTS Employees (
 	EmployeeID int primary key,
     EmployeeName VARCHAR(50) NOT NULL,
     DOB DATE NOT NULL,
-    Salary int NOT NULL
+    Salary DECIMAL(10, 2) NOT NULL,
+    CHECK (Salary > 0)
 );
 
 CREATE TABLE IF NOT EXISTS Showings (
@@ -40,7 +42,9 @@ CREATE TABLE IF NOT EXISTS Payments (
     ShowingID int NOT NULL,
     CustomerID int NOT NULL,
     Cost DECIMAL(5,2) NOT NULL,
+    CHECK (Cost > 0),
     MethodOfPayment VARCHAR(20) NOT NULL,
     FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID),
     FOREIGN KEY (ShowingID) REFERENCES Showings(ShowingID)
 );
+
