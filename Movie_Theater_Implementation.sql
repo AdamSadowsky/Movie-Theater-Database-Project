@@ -35,6 +35,8 @@ CREATE TABLE IF NOT EXISTS Showings (
     FOREIGN KEY (AuditoriumID) REFERENCES Auditoriums(AuditoriumID),
     FOREIGN KEY (MovieID) REFERENCES Movies(MovieID),
     FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID)
+    UNIQUE (AuditoriumID, Date, Time),
+    UNIQUE (EmployeeID, Date, Time)
 );
 
 CREATE TABLE IF NOT EXISTS Payments (
